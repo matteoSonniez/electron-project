@@ -8,12 +8,12 @@ Pour les programmes de muscu il sera possible de consulter le nombre d'années d
 
 ## pour le 20 mars
 
-créer un profil
-se connecter
-ajout de photo a son profil 
-suivre un profil
-fil d'actualité des personnes qu'on suit
-possibilité d'ajouter son programmes en dessous de la photo si elle est pris en fin de scéance
-fil d'actualité de programmes
-pour chaque programmes: une note et des commentaires
-pas encore sur de ca mais: notation général du profil selon notre assiduité et notre partage de bon programmes
+- créer un profil
+- se connecter
+- ajout de photo a son profil 
+- suivre un profil
+- fil d'actualité des personnes qu'on suit
+- possibilité d'ajouter son programmes en dessous de la photo si elle est pris en fin de scéance
+- fil d'actualité de programmes
+- pour chaque programmes: une note et des commentaires
+- pas encore sur de ca mais: notation général du profil selon notre assiduité et notre partage de bon programmes
