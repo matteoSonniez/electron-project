@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 import Header from '../../components/header';
+//const { dialog } = require.resolve('electron');
 
 const Index = () => {
+    const [imagePath, setImagePath] = useState('');
+
     return (
         <div>
             <Header></Header>
-            <p>testt</p>
         </div>
     );
 }

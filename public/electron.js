@@ -1,5 +1,5 @@
 // Module to control the application lifecycle and the native browser window.
-const { app, BrowserWindow, protocol } = require("electron");
+const { app, BrowserWindow, protocol, ipcMain, dialog  } = require("electron");
 const path = require("path");
 const url = require("url");
 
@@ -14,6 +14,23 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
     },
+  });
+
+  ipcMain.on('open-file-dialog',  (event, arg) => {
+    dialog.showOpenDialog({
+      properties: ['openFile'],
+      filters: [
+        { name: 'Images', extensions: ['jpg', 'png', 'gif'] }
+      ]
+    })
+    .then(result => { // se lance quand on a selectionner le fichier
+      event.reply('selected-file', result.filePaths[0]) // envoie le chemin du fichier selectionner
+    })
+    .catch(err => {
+      console.log(err)
+      dialog.showErrorBox('Error', 'Something went wrong')
+    })
+    ;
   });
 
   // In production, set the initial browser path to the local bundle generated
@@ -32,6 +49,9 @@ function createWindow() {
   if (!app.isPackaged) {
     mainWindow.webContents.openDevTools();
   }
+
+  //image loading
+
 }
 
 // Setup a local proxy to adjust the paths of requested files when loading
@@ -49,12 +69,28 @@ function setupLocalFilesNormalizerProxy() {
   );
 }
 
+const localFileProtocol =  () => {
+  const protocolName = 'safe-file'
+  // https://www.electronjs.org/fr/docs/latest/api/protocol#protocolregisterfileprotocolscheme-handler
+  protocol.registerFileProtocol(protocolName, (request, callback) => {
+    const url = request.url.replace(`${protocolName}://`, '')
+    try {
+      return callback(decodeURIComponent(url))
+    }
+    catch (error) {
+      // Handle the error as needed
+      console.error(error)
+    }
+  })
+}
+
 // This method will be called when Electron has finished its initialization and
 // is ready to create the browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
+  localFileProtocol();
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the

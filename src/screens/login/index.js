@@ -1,16 +1,26 @@
 import React from 'react';
-import logo from '../../img/gs.png';
 import Header from '../../components/header';
 
+const { useState } = require('react');
+
 const Index = () => {
+    const [imagePath, setImagePath] = useState();
+
+    const selectImage =  () => {
+     
+      window.thedialog.openFiles()
+      window.thedialog.getFilePath(setImagePath);
+     
+    };
+
     return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         <Header></Header>
-        <h1>
-          login
-        </h1>
       </header>
+      <button onClick={selectImage}>Ouvrir une boîte de dialogue</button>
+        {imagePath && <img src={imagePath}></img>}
+        
     </div>
     );
 }

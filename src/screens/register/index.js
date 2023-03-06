@@ -4,7 +4,7 @@ import Header from '../../components/header';
 const Index = () => {
     return (
         <div>
-            <header className="App-header">
+            <header>
                 <Header></Header>
                 <p>
                     Register
