@@ -2,23 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import Popup from 'reactjs-popup';
 import PopupContent from '../../components/popupContent';
-import useFetch from '../../hook/useFetch';
-import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 
-
-const Index = ({user}) => {
-  console.log("publiIIIIIII", user.publications);
-    const [thecookie, setCookie] = useState(Cookies.get('token_cookie'));
-    const { data, isLoading, error, fetchData } = useFetch('user/publications/get',{'authorization': thecookie}, null, 'GET');
-    
-    useEffect(() => {
-        fetchData();
-      }, []);
-
-      useEffect(() => {
-        console.log("OKKKKKKK", data);
-      }, [data]);
+const Index = ({user, isMyProfile}) => {
     return (
         <AllPage>
             <TitlesDiv>
@@ -29,10 +14,12 @@ const Index = ({user}) => {
                     <p>PROGRAMMES</p>
                 </TitleDiv>
             </TitlesDiv>
-            <Popup trigger={<Button> Ajouter</Button>}position="right center" contentStyle={{ width: '40%'}}>
+            {isMyProfile && 
+              <Popup trigger={<Button> Ajouter</Button>}position="right center" contentStyle={{ width: '40%'}}>
                 <PopupContent/>
-            </Popup>
-            <FlexPost>
+              </Popup>}
+            
+              <FlexPost>
                     {user.publications.map((publication) => (
                       <Posts>
                         <Image src={publication.images}/> 
@@ -56,7 +43,7 @@ const Image = styled.img`
 const Posts = styled.div`
   width: 290px;
   height: 300px;
-  margin-bottom: 5%;
+  margin-top: 5%;
   display: flex;
   align-items: center;
   justify-content: center;

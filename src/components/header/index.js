@@ -7,10 +7,13 @@ import Search from '../../img/chercher.png';
 import Send from '../../img/send.png';
 import { Link, useNavigate  } from "react-router-dom";
 import styled from "styled-components";
+import { useEffect, useState } from 'react';
+
 
 
 const Index = () => {
   const navigate = useNavigate();
+  const [sidebarOuverte, setSidebarOuverte] = useState(false);
   
   return (
     <AllHeader>
@@ -50,6 +53,14 @@ const Index = () => {
           Profile
         </Button>
       </div>
+      <div>
+      <button onClick={() => setSidebarOuverte(true)}>Ouvrir la sidebar</button>
+      <Sidebar open={sidebarOuverte}>
+        <button onClick={() => setSidebarOuverte(false)}>fermer la sidebar</button>
+        {<p>test</p>}
+      </Sidebar>
+      </div>
+    
     </AllHeader>
     );
 }
@@ -78,6 +89,18 @@ const Button = styled.button`
             background-color: #1C1A1A;
             color: white;
         }
+`;
+const Sidebar  = styled.button`
+  position: fixed;
+  overflow: scroll;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: grey;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
+  transition: transform 0.3s ease-in-out;
 `;
 
 export default Index;

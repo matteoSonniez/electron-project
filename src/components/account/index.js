@@ -17,8 +17,8 @@ const Index = ({user, isMyProfile}) => {
         <>
             {data && 
             <AllPage>
-                <AccountHeader user={data}/>
-                <AccountPublication user={user}/>
+                <AccountHeader user={user} isMyProfile={isMyProfile}/>
+                <AccountPublication user={user} isMyProfile={isMyProfile}/>
             </AllPage> }
         </>
     );

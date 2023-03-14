@@ -35,7 +35,16 @@ const Index = ({post}) => {
     return (
       <Publication>
         <HeaderPublication onClick={() => navigate("/profile2", {state: {isMyProfile: false, userId: post.user._id }})}>
-          <ImageProfile src={ImageProf}></ImageProfile>
+          {post.user.imageProfile ? 
+                <RightPart>
+                  <ImageProfile src={post.user.imageProfile}/>
+                </RightPart>
+                : 
+                <RightPart>
+                  <ImageProfile src={ImageProf}/>
+                </RightPart>
+                  
+                }
           <AllNames>
               <UserName>{post.user.userName}</UserName>
               <Names>{post.user.firstName}  {post.user.lastName}</Names>
@@ -85,9 +94,14 @@ const Image = styled.img`
 `;
 const ImageProfile = styled.img`
   width: 40px;
-  border-radius: 20px;
-  border: 2px solid #BEB6B6;
+`;
+const RightPart = styled.div`
   margin-right: 2%;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 100px;
+  border: 1px solid gray;
 `;
 const ButtonImage = styled.img`
   padding-top: 2%;
