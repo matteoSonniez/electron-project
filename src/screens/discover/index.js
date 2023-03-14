@@ -1,39 +1,35 @@
 import React from 'react';
 import LeftPart from '../../components/leftPart';
-import Publications from '../../components/homePublication';
+import Publication from '../../components/posts';
 import styled from "styled-components";
 import useFetch from '../../hook/useFetch';
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
 
 
 
 const Index = () => {
-    const navigate = useNavigate();
     
-    const [thecookie, setCookie] = useState(Cookies.get('token_cookie'));
-    const { data, isLoading, error, fetchData } = useFetch('user/friends/get',{'authorization': thecookie}, null, 'GET');
+    const { data, isLoading, error, fetchData } = useFetch('publication/get',{}, null, 'GET');
 
     useEffect(() => {
-        if(thecookie == undefined){
-            navigate('/login');
-        }
-        if(thecookie != undefined){
-            fetchData();
-        }
+        fetchData();
       }, []);
 
     useEffect(() => {
         if(data != null){
-            console.log("data", data);
+            console.log("all_publis!!!", data);
         }
     }, [data]);
     return (
         <AllPage>
             <LeftPart></LeftPart>
             <Right>
-                {data != null && <Publications users={data}/>}
+                {data != null &&
+                <Publications>
+                    {data.map((post) => (
+                        <Publication post={post}/>
+                    ))}
+                </Publications>}
             </Right>
         </AllPage>
     );
@@ -50,5 +46,9 @@ const Right = styled.div`
   height: 100vh;
   overflow: auto;
 `;
+const Publications = styled.div`
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+`;
 export default Index;
-

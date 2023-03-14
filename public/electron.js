@@ -15,6 +15,8 @@ function createWindow() {
       nodeIntegration: true,
     },
   });
+  mainWindow.setBackgroundColor('#000000')
+  mainWindow.webContents.insertCSS('body { color: white; }')
 
   ipcMain.on('open-file-dialog',  (event, arg) => {
     dialog.showOpenDialog({
