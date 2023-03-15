@@ -9,10 +9,10 @@ const Index = ({type, name, placeholder, required, onChange, value}) => {
 }
 
 const Inputstyle = styled.input`
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid gray;
   width: 100%;
-  height: 2.8vh;
+  height: 4vh;
   background-color: #171819;
   color: white;
   margin-bottom: 10px;

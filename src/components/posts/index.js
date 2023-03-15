@@ -36,13 +36,13 @@ const Index = ({post}) => {
       <Publication>
         <HeaderPublication onClick={() => navigate("/profile2", {state: {isMyProfile: false, userId: post.user._id }})}>
           {post.user.imageProfile ? 
-                <RightPart>
+                <ImgProfile>
                   <ImageProfile src={post.user.imageProfile}/>
-                </RightPart>
+                </ImgProfile>
                 : 
-                <RightPart>
+                <ImgProfile>
                   <ImageProfile src={ImageProf}/>
-                </RightPart>
+                </ImgProfile>
                   
                 }
           <AllNames>
@@ -95,7 +95,7 @@ const Image = styled.img`
 const ImageProfile = styled.img`
   width: 40px;
 `;
-const RightPart = styled.div`
+const ImgProfile = styled.div`
   margin-right: 2%;
   width: 40px;
   height: 40px;
