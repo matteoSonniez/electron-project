@@ -1,5 +1,8 @@
 # GainzShare
 
+lien de la video youtube: https://youtu.be/pmg3QE7xn1g
+lien du back: https://github.com/matteoSonniez/GainzShare_back.git
+
 appli de partage entre go muscu, avec des photos de notre évolution physique et de nos programmes
 Possibilité de suivre les gens comme sur insta par exemple, un fil d actualité des photos et un fil d'actualité des programmes 
 une photo par semaine a prendre obligatoirement, on peut la mettre public ou privé pour qu elle soit accessible seulement par nos amis,
