@@ -12,9 +12,9 @@ const Index = () => {
 }
 
 const Title = styled.h1`
-  font-size: 40px;
+  font-size: 35px;
   padding: 20px 32px;
-  font-family: 'Brush Script MT', cursive;
+  font-family: Lucida Handwriting;
 `;
 
 

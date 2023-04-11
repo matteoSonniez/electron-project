@@ -27,7 +27,7 @@ const Index = ({users}) => {
     return (
         <>
             {users.map((user) => (
-                <AllComponent onClick={() => navigate("/profile2", {state: {isMyProfile: false, userId: user._id }})}>
+                <AllComponent onClick={() => navigate("/profile", {state: {isMyProfile: false, userId: user._id }})}>
                     {user.imageProfile ? 
                         <ImgProfile>
                             <ImageProfile src={user.imageProfile}/>
@@ -39,7 +39,7 @@ const Index = ({users}) => {
                         
                         }
                     <p>{user.userName}</p>
-                    <button onClick={event => addFriend(event, user)}>suivre</button> 
+                    <Button onClick={event => addFriend(event, user)}>suivre</Button> 
                 </AllComponent> 
             ))}
         </>
@@ -63,11 +63,31 @@ const AllComponent = styled.div`
   padding: 10px 10px;
   margin: 20px;
   justify-content: space-between;
+  background-color: #2A2727 ;
+  cursor: pointer;
   &:hover{
-            background-color: #2A2727;
+            background-color: #211F1F;
             color: white;
         }
   
+`;
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  width: 70px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: 'Poppins';
+  transition-duration: 0.5s;
+  cursor: pointer;
+  &:hover{
+            background-color: #1C1A1A;
+            color: white;
+        }
 `;
 
 export default Index;

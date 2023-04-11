@@ -4,6 +4,7 @@ import Programme from '../../img/file.png';
 import Discover from '../../img/compass.png';
 import Home from '../../img/home.png';
 import Close from '../../img/close.png';
+import Deconnexion from '../../img/deconnexion.png';
 import Search from '../../img/chercher.png';
 import Send from '../../img/send.png';
 import { Link, useNavigate  } from "react-router-dom";
@@ -72,9 +73,9 @@ const Index = () => {
         </Button>
       </div>
       <BottonContact>
-        <Button>
-          <IconBlanc src={Support}></IconBlanc>
-          Contact us
+        <Button onClick={() => navigate("/login")}>
+          <IconBlanc src={Deconnexion}></IconBlanc>
+          Déconnexion
         </Button>
       </BottonContact>
     </AllHeader>
@@ -112,6 +113,7 @@ const CloseSideBar = styled.img`
   height: 20px;
   filter: invert(100%);
   -webkit-filter: invert(100%);
+  cursor: pointer;
 `;
 const Button = styled.button`
   display: flex;
@@ -120,6 +122,7 @@ const Button = styled.button`
   color: white;
   width: 80%;
   height: 50px;
+  margin-bottom: 15px;
   border-radius: 8px;
   font-size: 20px;
   font-family: 'Poppins';

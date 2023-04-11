@@ -2,8 +2,24 @@ import React from 'react';
 import styled from "styled-components";
 import Popup from 'reactjs-popup';
 import PopupContent from '../../components/popupContent';
+import Modal from '../../components/Modal';
+import ModalAdd from '../../components/ModalAddImage';
+import { useEffect, useState } from 'react';
 
-const Index = ({user, isMyProfile}) => {
+
+const Index = ({user, isMyProfile, newImageAdd}) => {
+    const [isOpen , setIsOpen] = useState(false);
+    const [isOpenAdd , setIsOpenAdd] = useState(false);
+    const [publiInfo , setPubliInfo] = useState();
+    const [userInfo , setUserInfo] = useState();
+    const openModal =  (publication, user) => {
+      setPubliInfo(publication);
+      setUserInfo(user);
+      setIsOpen(true)
+    };
+    const openModalAddModal =  () => {
+      setIsOpenAdd(true)
+    };
     return (
         <AllPage>
             <TitlesDiv>
@@ -15,17 +31,30 @@ const Index = ({user, isMyProfile}) => {
                 </TitleDiv>
             </TitlesDiv>
             {isMyProfile && 
-              <Popup trigger={<Button> Ajouter</Button>}position="right center" contentStyle={{ width: '40%'}}>
-                <PopupContent/>
-              </Popup>}
-            
+              <Button onClick={() => openModalAddModal()}> Ajouter</Button>
+            }
               <FlexPost>
                     {user.publications.map((publication) => (
-                      <Posts>
-                        <Image src={publication.images}/> 
-                      </Posts>  
+                      <>
+                        <Posts onClick={() => openModal(publication, user)}>
+                          <Image src={publication.images}/> 
+                        </Posts>  
+                      </>
+                      
                     ))}
               </FlexPost>
+              {
+                  isOpen && (
+                    <Modal title="Modifier mon profil" closeModal={() => {setIsOpen(false);}} publiInfo={publiInfo} userInfo={userInfo}>
+                    </Modal>
+                  )
+              }
+              {
+                  isOpenAdd && (
+                    <ModalAdd newImageAdd={newImageAdd} title="Modifier mon profil" closeModal={() => {setIsOpenAdd(false);}}>
+                    </ModalAdd>
+                  )
+              }
         </AllPage>
     );
 }
@@ -82,7 +111,7 @@ const Button = styled.button`
   background-color: #2F2D2E;
   color: white;
   padding: 10px 10px;
-  width: 10%;
+  width: 80px;
   border-radius: 8px;
   font-size: 16px;
   font-family: 'Poppins';

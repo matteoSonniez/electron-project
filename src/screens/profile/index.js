@@ -21,6 +21,10 @@ const Index = (props) => {
 
     const { data, isLoading, error, fetchData } = useFetch(pathApi,headerApi, bodyApi, methodApi);
     
+    const newImageAdd = () => {
+      fetchData();
+    };
+
     useEffect(() => {
         fetchData();
       }, []);
@@ -29,7 +33,7 @@ const Index = (props) => {
       <AllPage>
             <LeftPart></LeftPart>
             <RightPart>
-              {data && <Account user={data} isMyProfile={isMyProfile}/>}
+              {data && <Account user={data} isMyProfile={isMyProfile} newImageAdd={newImageAdd} />}
             </RightPart>
         </AllPage>
     );

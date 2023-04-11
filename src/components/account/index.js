@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import useFetch from '../../hook/useFetch';
 
-const Index = ({user, isMyProfile}) => {
+const Index = ({user, isMyProfile, newImageAdd}) => {
     const [thecookie, setCookie] = useState(Cookies.get('token_cookie'));
     const { data, isLoading, error, fetchData } = useFetch('user',{'authorization': thecookie}, null, 'GET');
     
@@ -18,7 +18,7 @@ const Index = ({user, isMyProfile}) => {
             {data && 
             <AllPage>
                 <AccountHeader user={user} isMyProfile={isMyProfile}/>
-                <AccountPublication user={user} isMyProfile={isMyProfile}/>
+                <AccountPublication user={user} isMyProfile={isMyProfile} newImageAdd={newImageAdd}/>
             </AllPage> }
         </>
     );
